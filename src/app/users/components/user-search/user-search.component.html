@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>User Id</mat-label>
+  <input #searchInput matInput (input)="search(searchInput.value)" [matAutocomplete]="auto" />
+  <mat-autocomplete #auto="matAutocomplete" matAuto>
+    <a *ngIf="user$ | async as user" routerLink="./{{user?.id}}">
+      <mat-option>{{user?.firstName}} {{user?.lastName}}</mat-option>
+    </a>
+  </mat-autocomplete>
+</mat-form-field>
