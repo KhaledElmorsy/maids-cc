@@ -1,0 +1,19 @@
+.user-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.outlet-container {
+  width: 100%;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+
+  .outlet {
+    display: flex;
+    justify-content: center;
+  }
+}

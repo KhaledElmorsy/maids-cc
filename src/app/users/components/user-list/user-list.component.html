@@ -1,11 +1,10 @@
+<h2>Users</h2>
 <mat-card *ngIf="totalPages !== undefined" class="list-container">
-  <mat-card-title class="grid-title">Users</mat-card-title>
-
   <mat-grid-list cols="3" class="user-grid">
     <mat-grid-tile *ngFor="let user of users" class="grid-tile">
       <a routerLink="./{{user.id}}">
         <mat-card class="user-card">
-          <img mat-card-lg-image src="{{user.avatar}}" alt="{{user.firstName}}'s photo" />
+          <img mat-card-md-image src="{{user.avatar}}" alt="{{user.firstName}}'s photo" />
           <mat-card-subtitle class="subtitle">
             {{user.firstName}} {{user.lastName}}
           </mat-card-subtitle>
