@@ -16,7 +16,7 @@ import {
   styleUrl: './user-search.component.scss',
 })
 export class UserSearchComponent implements OnInit {
-  user$!: Observable<User>;
+  user$!: Observable<User | null>;
   private searchTerm = new Subject<string>();
 
   constructor(private usersService: UsersService) {}
@@ -25,7 +25,7 @@ export class UserSearchComponent implements OnInit {
     this.user$ = this.searchTerm.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((term: string) => this.usersService.getUser(Number(term))),
+      switchMap((term: string) => this.usersService.getUser(Number(term)))
     );
   }
 

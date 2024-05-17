@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@/environments/environment';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { User } from './user.model';
 import * as UsersApi from './misc/users-api-types';
 
@@ -23,9 +23,10 @@ export class UsersService {
   }
 
   getTotalPages(): Observable<number> {
-    return this.http
-      .get<UsersApi.GetUserList>(this.USERS_URL)
-      .pipe(map((x) => x.total_pages));
+    return this.http.get<UsersApi.GetUserList>(this.USERS_URL).pipe(
+      map((x) => x.total_pages),
+      catchError(this.handleError(1))
+    );
   }
 
   getUsers({ page }: { page?: number } = {}): Observable<User[]> {
@@ -39,12 +40,24 @@ export class UsersService {
 
     return this.http
       .get<UsersApi.GetUserList>(`${this.USERS_URL}`, httpOptions)
-      .pipe(map((res) => res.data.map(this.mapServerUserData)));
+      .pipe(
+        map((res) => res.data.map(this.mapServerUserData)),
+        catchError(this.handleError([]))
+      );
   }
 
-  getUser(id: number): Observable<User> {
+  getUser(id: number): Observable<User | null> {
     return this.http
       .get<UsersApi.GetUserSingle>(`${this.USERS_URL}/${id}`)
-      .pipe(map((res) => this.mapServerUserData(res.data)));
+      .pipe(
+        map((res) => this.mapServerUserData(res.data)),
+        catchError(this.handleError(null))
+      );
+  }
+
+  private handleError<T>(output: T) {
+    return (_: any) => {
+      return of(output as T)
+    };
   }
 }
