@@ -1,5 +1,4 @@
 <div class="page-container">
-  <h2>User Details</h2>
   <mat-card class="details-container" *ngIf="user">
     <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
     <img mat-card-xl-image src="{{user.avatar}}" alt="{{user.firstName}}'s avatar" />
@@ -8,12 +7,10 @@
       <p>Email: {{user.email}}</p>
     </mat-card-subtitle>
   </mat-card>
-  <div class="footer">
-    <div class="button-container">
-      <button mat-flat-button color="primary" (click)="back()">Back</button>
-      <a routerLink="..">
-        <button mat-flat-button color="primary">User list</button>
-      </a>
-    </div>
-  </div>
+</div>
+<div class="button-container">
+  <button mat-flat-button color="primary" (click)="back()">Back</button>
+  <a routerLink="..">
+    <button mat-flat-button color="primary">User list</button>
+  </a>
 </div>

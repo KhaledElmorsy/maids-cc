@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(100%, 900px);
+  width: min(100%, 1000px);
 
   .list-container {
     border: lightgray solid 1px;
@@ -17,27 +17,30 @@
     .user-grid {
       @for $i from 1 through 7 {
         .grid-tile:nth-child(#{$i}) {
-          animation: pop-up 500ms both;
-          animation-delay: $i*50ms;
+          a {
+            text-decoration: none !important;
+            animation: pop-up 500ms both;
+            animation-delay: $i*50ms;
 
-          .user-card {
-            width: fit-content;
-            padding: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: 200ms;
-
-            &:hover {
-              transform: scale(1.05);
-            }
-
-            .subtitle {
+            .user-card {
+              width: fit-content;
+              padding: 0px;
               display: flex;
+              flex-direction: column;
               align-items: center;
-              animation-delay: $i * 300ms;
-              height: 3rem;
+              cursor: pointer;
+              transition: 200ms;
+
+              &:hover {
+                transform: scale(1.05);
+              }
+
+              .subtitle {
+                display: flex;
+                align-items: center;
+                animation-delay: $i * 300ms;
+                height: 3rem;
+              }
             }
           }
         }

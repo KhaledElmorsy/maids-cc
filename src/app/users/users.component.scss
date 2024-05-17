@@ -7,13 +7,9 @@
 }
 
 .outlet-container {
+  position: relative;
   width: 100%;
   padding-top: 30px;
   display: flex;
   justify-content: center;
-
-  .outlet {
-    display: flex;
-    justify-content: center;
-  }
 }
