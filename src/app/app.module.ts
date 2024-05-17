@@ -9,6 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoadingInterceptorService } from './shared/loading-interceptor.service';
+import { RequestCacheInterceptorService } from './shared/request-cache-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,11 @@ import { LoadingInterceptorService } from './shared/loading-interceptor.service'
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestCacheInterceptorService,
       multi: true,
     },
   ],
