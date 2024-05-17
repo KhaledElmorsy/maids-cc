@@ -2,7 +2,7 @@
   <mat-label>User Id</mat-label>
   <input #searchInput matInput (input)="search(searchInput.value)" [matAutocomplete]="auto" />
   <mat-autocomplete #auto="matAutocomplete" matAuto>
-    <a *ngIf="user$ | async as user" routerLink="./{{user?.id}}">
+    <a *ngIf="user$ | async as user" routerLink="/users/{{user?.id}}">
       <mat-option>{{user?.firstName}} {{user?.lastName}}</mat-option>
     </a>
   </mat-autocomplete>
